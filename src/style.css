@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+}
+
+/* Dodajemo transition samo za relevantne properties */
+* {
+  @apply transition-colors duration-200;
+}
+
+/* Osnovni stilovi za light/dark mode */
+html {
+  @apply antialiased;
+}
+
+html.dark {
+  @apply bg-gray-900 text-white;
+}
+
+body {
+  @apply m-0 p-0 min-h-screen;
+  @apply bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white;
+}

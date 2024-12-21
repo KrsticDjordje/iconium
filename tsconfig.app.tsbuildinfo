@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/utils/icons.ts","./src/utils/navigationicons.ts","./src/app.vue","./src/components/helloworld.vue","./src/components/iconcustomizer.vue","./src/components/icondrawer.vue","./src/components/iconfilters.vue","./src/components/sidemenu.vue"],"version":"5.7.2"}

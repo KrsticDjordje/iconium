@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 
-const props = defineProps<{
+interface IconDrawerProps {
     isOpen: boolean;
     icon: any;
     iconName: string;
@@ -11,9 +11,13 @@ const props = defineProps<{
         grade: number;
         opticalSize: number;
     }
-}>();
+}
 
-const emit = defineEmits(['close']);
+const props = defineProps<IconDrawerProps>();
+
+const emit = defineEmits<{
+    'close': []
+}>();
 
 const width = ref(24);
 const height = ref(24);

@@ -30,6 +30,12 @@ onMounted(() => {
   checkDarkMode();
 });
 
+interface Icon {
+  name: string;
+  icon: any; // ili precizniji tip ako je moguć
+  category: string;
+}
+
 const filters = ref({
   fill: true,
   weight: 100,
@@ -39,11 +45,14 @@ const filters = ref({
 
 const selectedCategory = ref('All');
 const searchQuery = ref('');
+const selectedIcon = ref<Icon | null>(null);
+const isDrawerOpen = ref(false);
+const isFilterOpen = ref(false);
 
 const categories = computed(() => ['All', ...iconCategories.map(c => c.name)]);
 
 const filteredIcons = computed(() => {
-  let icons = [];
+  const icons: Icon[] = [];
 
   iconCategories.forEach(category => {
     if (selectedCategory.value === 'All' || selectedCategory.value === category.name) {
@@ -62,26 +71,14 @@ const filteredIcons = computed(() => {
   return icons;
 });
 
-const width = ref(24)
-const color = ref('#000000')
-const showBackground = ref(false)
-const backgroundColor = ref('#ffffff')
-
-// Dodajemo stanje za mobilni filter
-const isFilterOpen = ref(false);
-
-// Dodajemo stanje za drawer
-const selectedIcon = ref(null);
-const isDrawerOpen = ref(false);
-
 // Funkcija za otvaranje drawera
-const openIconDrawer = (icon) => {
+const openIconDrawer = (icon: Icon) => {
   selectedIcon.value = icon;
   isDrawerOpen.value = true;
 };
 
 // Funkcija za primenu filtera na ikonicu
-const applyIconStyles = (icon: any) => {
+const applyIconStyles = () => {
   return {
     stroke: filters.value.fill ? 'currentColor' : 'none',
     strokeWidth: filters.value.weight / 100,
@@ -181,7 +178,7 @@ const applyIconStyles = (icon: any) => {
                           hover:bg-gray-50 dark:hover:bg-gray-700/50">
                 <div class="aspect-square flex items-center justify-center">
                   <component :is="icon.icon" class="w-7 h-7 sm:w-8 sm:h-8 text-gray-900 dark:text-white"
-                    :style="applyIconStyles(icon)" />
+                    :style="applyIconStyles()" />
                 </div>
                 <p class="text-[11px] sm:text-xs mt-1.5 text-center text-gray-600 dark:text-gray-400 truncate">
                   {{ icon.name }}
@@ -195,8 +192,11 @@ const applyIconStyles = (icon: any) => {
   </div>
 
   <!-- Icon Drawer -->
-  <IconDrawer :is-open="isDrawerOpen" :icon="selectedIcon?.icon" :icon-name="selectedIcon?.name" :filters="filters"
-    @close="isDrawerOpen = false" />
+  <IconDrawer v-if="selectedIcon" :is-open="isDrawerOpen" :icon="selectedIcon.icon" :icon-name="selectedIcon.name"
+    :filters="filters" @close="() => {
+      isDrawerOpen = false;
+      selectedIcon = null;
+    }" />
 </template>
 
 <style>

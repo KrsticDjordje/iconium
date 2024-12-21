@@ -10,7 +10,10 @@ const props = defineProps<{
     }
 }>();
 
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits<{
+    'update:modelValue': [value: typeof props.modelValue]
+    'close': []
+}>();
 
 // Lokalno stanje koje prati props
 const filters = ref({ ...props.modelValue });

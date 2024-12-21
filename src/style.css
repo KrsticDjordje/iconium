@@ -1,14 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
   color-scheme: light dark;
+  font-family: 'Outfit', system-ui, -apple-system, sans-serif;
 }
 
-/* Dodajemo transition samo za relevantne properties */
-* {
-  @apply transition-colors duration-200;
+/* Poboljšani font rendering */
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
 }
 
 /* Osnovni stilovi za light/dark mode */
@@ -23,4 +30,28 @@ html.dark {
 body {
   @apply m-0 p-0 min-h-screen;
   @apply bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white;
+}
+
+/* Dodajemo transition samo za relevantne properties */
+* {
+  @apply transition-colors duration-200;
+}
+
+/* Poboljšani font stilovi za naslove */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-semibold tracking-tight;
+}
+
+/* Poboljšani font stilovi za tekst */
+p,
+span,
+a,
+button,
+input {
+  @apply font-normal tracking-wide;
 }

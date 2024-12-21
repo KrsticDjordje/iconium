@@ -1,0 +1,60 @@
+{
+    "app": {
+        "title": "Iconium",
+        "searchPlaceholder": "Pretraži ikonice"
+    },
+    "filters": {
+        "title": "Podešavanja",
+        "fill": {
+            "label": "Popuna",
+            "tooltip": "Uključi/isključi popunu ikonica"
+        },
+        "weight": {
+            "label": "Debljina",
+            "light": "Tanka",
+            "bold": "Debela"
+        },
+        "grade": {
+            "label": "Gradacija",
+            "thin": "Tanka",
+            "thick": "Debela"
+        },
+        "opticalSize": {
+            "label": "Optička veličina"
+        }
+    },
+    "drawer": {
+        "dimensions": "Dimenzije",
+        "width": "Širina",
+        "height": "Visina",
+        "download": {
+            "svg": "SVG",
+            "png": "PNG"
+        },
+        "copy": {
+            "button": "Kopiraj HTML",
+            "success": "Kopirano!"
+        }
+    },
+    "categories": {
+        "all": "Sve",
+        "navigation": "Navigacija",
+        "actions": "Akcije",
+        "communication": "Komunikacija",
+        "editing": "Uređivanje",
+        "files": "Fajlovi",
+        "media": "Mediji",
+        "social": "Društveno",
+        "weather": "Vreme",
+        "devices": "Uređaji",
+        "security": "Bezbednost",
+        "shopping": "Kupovina",
+        "time": "Vreme",
+        "transportation": "Transport",
+        "user": "Korisnik",
+        "health": "Zdravlje",
+        "business": "Biznis",
+        "development": "Razvoj",
+        "other": "Ostalo"
+    }
+}

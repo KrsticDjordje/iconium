@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 interface IconDrawerProps {
     isOpen: boolean;
@@ -66,13 +67,13 @@ const downloadPNG = () => {
 
     // Kreiramo canvas
     const canvas = document.createElement('canvas');
-    canvas.width = width.value * 2; // Množimo sa 2 za bolju rezoluciju
+    canvas.width = width.value * 2;
     canvas.height = height.value * 2;
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Kreiramo SVG sa primenjenim stilovima
+
     const svgContent = `
         <svg xmlns="http://www.w3.org/2000/svg" 
              width="${width.value * 2}" 
@@ -88,7 +89,7 @@ const downloadPNG = () => {
         </svg>
     `;
 
-    // Konvertujemo SVG u PNG
+
     const img = new Image();
     const svgBlob = new Blob([svgContent], { type: 'image/svg+xml' });
     const url = URL.createObjectURL(svgBlob);
@@ -98,7 +99,7 @@ const downloadPNG = () => {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-        // Preuzimamo PNG
+
         canvas.toBlob((blob) => {
             if (!blob) return;
             const blobUrl = URL.createObjectURL(blob);
@@ -115,7 +116,7 @@ const downloadPNG = () => {
     img.src = url;
 };
 
-// Funkcija za primenu filtera
+
 const applyIconStyles = () => {
     return {
         width: `${width.value}px`,
@@ -127,7 +128,6 @@ const applyIconStyles = () => {
     };
 };
 
-// Ažuriramo funkciju za kopiranje HTML-a
 const copyHtml = () => {
     const iconName = props.iconName.toLowerCase().replace(/\s+/g, '-');
     const htmlCode = `<i class="icon-${iconName}" style="${Object.entries(applyIconStyles()).map(([key, value]) => `${key}: ${value}`).join('; ')}"></i>`;
@@ -139,6 +139,8 @@ const copyHtml = () => {
         }, 2000);
     });
 };
+
+const { t } = useI18n();
 </script>
 
 <template>
@@ -187,17 +189,20 @@ const copyHtml = () => {
 
                             <!-- Size Controls -->
                             <div class="space-y-4">
-                                <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300">Dimensions</h3>
+                                <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                                    {{ t('drawer.dimensions') }}
+                                </h3>
                                 <div class="grid grid-cols-2 gap-4">
                                     <div>
-                                        <label class="block text-sm text-gray-600 dark:text-gray-400 mb-1">Width</label>
+                                        <label class="block text-sm text-gray-600 dark:text-gray-400 mb-1">{{
+                                            t('drawer.width') }}</label>
                                         <input type="number" v-model="width" class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 
                                       bg-white dark:bg-gray-700 text-gray-900 dark:text-white
                                       focus:ring-2 focus:ring-orange-500 dark:focus:ring-orange-400">
                                     </div>
                                     <div>
-                                        <label
-                                            class="block text-sm text-gray-600 dark:text-gray-400 mb-1">Height</label>
+                                        <label class="block text-sm text-gray-600 dark:text-gray-400 mb-1">{{
+                                            t('drawer.height') }}</label>
                                         <input type="number" v-model="height" class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 
                                       bg-white dark:bg-gray-700 text-gray-900 dark:text-white
                                       focus:ring-2 focus:ring-orange-500 dark:focus:ring-orange-400">
@@ -218,7 +223,7 @@ const copyHtml = () => {
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                                         </svg>
-                                        SVG
+                                        {{ t('drawer.download.svg') }}
                                     </button>
                                     <button @click="downloadPNG" class="px-4 py-3 bg-gradient-to-r from-gray-100 to-gray-200 
                                                dark:from-gray-700 dark:to-gray-800 hover:from-gray-200 
@@ -231,7 +236,7 @@ const copyHtml = () => {
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                                         </svg>
-                                        PNG
+                                        {{ t('drawer.download.png') }}
                                     </button>
                                 </div>
 
@@ -245,7 +250,7 @@ const copyHtml = () => {
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                         </svg>
-                                        Copy HTML
+                                        {{ t('drawer.copy.button') }}
                                     </button>
 
                                     <!-- Notification -->
@@ -258,7 +263,7 @@ const copyHtml = () => {
                                         <div v-if="showCopyNotification" class="absolute -top-12 left-1/2 transform -translate-x-1/2 px-3 py-2 
                                                    bg-gray-900 dark:bg-white text-white dark:text-gray-900 
                                                    rounded-lg text-sm font-medium shadow-lg">
-                                            Copied!
+                                            {{ t('drawer.copy.success') }}
                                         </div>
                                     </Transition>
                                 </div>
@@ -272,7 +277,6 @@ const copyHtml = () => {
 </template>
 
 <style scoped>
-/* Drawer animacije */
 .drawer-enter-active,
 .drawer-leave-active {
     transition: opacity 0.3s ease;
@@ -283,7 +287,7 @@ const copyHtml = () => {
     opacity: 0;
 }
 
-/* Backdrop animacije */
+
 .backdrop-enter-active,
 .backdrop-leave-active {
     transition: opacity 0.3s ease;
@@ -294,7 +298,7 @@ const copyHtml = () => {
     opacity: 0;
 }
 
-/* Animacija za drawer sadržaj */
+
 .drawer-enter-active .bg-white,
 .drawer-leave-active .bg-white,
 .drawer-enter-active .dark\:bg-gray-800,
@@ -312,7 +316,7 @@ const copyHtml = () => {
     transform: translateX(100%);
 }
 
-/* Smooth scroll */
+
 .overflow-y-auto {
     scroll-behavior: smooth;
 
@@ -334,7 +338,7 @@ const copyHtml = () => {
     }
 }
 
-/* Hover efekti za dugmad */
+
 button {
     @apply transform transition-all duration-200;
 

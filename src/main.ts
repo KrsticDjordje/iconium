@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
+import i18n from './i18n'
 
 // Inicijalizacija dark mode-a
 function initializeDarkMode() {
@@ -14,10 +15,9 @@ function initializeDarkMode() {
     }
 }
 
-// Pozivamo inicijalizaciju odmah
+
 initializeDarkMode()
 
-// Pratimo promene system theme
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
     if (!localStorage.getItem('darkMode')) {
         if (e.matches) {
@@ -28,4 +28,6 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e)
     }
 })
 
-createApp(App).mount('#app')
+const app = createApp(App)
+app.use(i18n)
+app.mount('#app')

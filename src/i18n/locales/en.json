@@ -1,0 +1,60 @@
+{
+    "app": {
+        "title": "Iconium",
+        "searchPlaceholder": "Search icons"
+    },
+    "filters": {
+        "title": "Icon Settings",
+        "fill": {
+            "label": "Fill",
+            "tooltip": "Toggle fill mode for icons"
+        },
+        "weight": {
+            "label": "Weight",
+            "light": "Light",
+            "bold": "Bold"
+        },
+        "grade": {
+            "label": "Grade",
+            "thin": "Thin",
+            "thick": "Thick"
+        },
+        "opticalSize": {
+            "label": "Optical Size"
+        }
+    },
+    "drawer": {
+        "dimensions": "Dimensions",
+        "width": "Width",
+        "height": "Height",
+        "download": {
+            "svg": "SVG",
+            "png": "PNG"
+        },
+        "copy": {
+            "button": "Copy HTML",
+            "success": "Copied!"
+        }
+    },
+    "categories": {
+        "all": "All",
+        "navigation": "Navigation",
+        "actions": "Actions",
+        "communication": "Communication",
+        "editing": "Editing",
+        "files": "Files",
+        "media": "Media",
+        "social": "Social",
+        "weather": "Weather",
+        "devices": "Devices",
+        "security": "Security",
+        "shopping": "Shopping",
+        "time": "Time",
+        "transportation": "Transportation",
+        "user": "User",
+        "health": "Health",
+        "business": "Business",
+        "development": "Development",
+        "other": "Other"
+    }
+}

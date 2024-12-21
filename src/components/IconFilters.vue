@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 const props = defineProps<{
     modelValue: {
@@ -29,6 +30,8 @@ watch(() => props.modelValue, (newVal) => {
         filters.value = { ...newVal };
     }
 }, { deep: true });
+
+const { t } = useI18n();
 </script>
 
 <template>
@@ -37,7 +40,7 @@ watch(() => props.modelValue, (newVal) => {
                 overflow-y-auto">
         <!-- Mobile Close Button -->
         <div class="flex justify-between items-center mb-6 lg:hidden">
-            <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Icon Settings</h2>
+            <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">{{ t('filters.title') }}</h2>
             <button @click="$emit('close')" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
                 <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -47,7 +50,7 @@ watch(() => props.modelValue, (newVal) => {
 
         <!-- Desktop Title -->
         <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-6 hidden lg:block">
-            Icon Settings
+            {{ t('filters.title') }}
         </h2>
 
         <div class="space-y-8">
@@ -55,7 +58,7 @@ watch(() => props.modelValue, (newVal) => {
             <div class="relative">
                 <div class="flex items-center justify-between mb-3">
                     <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
-                        <span>Fill</span>
+                        <span>{{ t('filters.fill.label') }}</span>
                         <button class="group relative">
                             <svg class="w-4 h-4 text-gray-400 hover:text-gray-600 dark:text-gray-500 
                                     dark:hover:text-gray-300 transition-colors" viewBox="0 0 20 20"
@@ -66,7 +69,7 @@ watch(() => props.modelValue, (newVal) => {
                             </svg>
                             <span class="absolute -top-2 left-6 w-48 p-2 bg-gray-800 text-xs text-white rounded-md 
                                      opacity-0 group-hover:opacity-100 transition-opacity">
-                                Toggle fill mode for icons
+                                {{ t('filters.fill.tooltip') }}
                             </span>
                         </button>
                     </h3>
@@ -85,7 +88,8 @@ watch(() => props.modelValue, (newVal) => {
             <!-- Weight Slider -->
             <div class="relative">
                 <div class="flex items-center justify-between mb-3">
-                    <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300">Weight</h3>
+                    <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300">{{ t('filters.weight.label') }}
+                    </h3>
                     <span class="px-2 py-1 text-sm bg-orange-100 dark:bg-orange-900/30 text-orange-600 
                                 dark:text-orange-400 rounded-md">{{ filters.weight }}</span>
                 </div>
@@ -109,15 +113,15 @@ watch(() => props.modelValue, (newVal) => {
                            [&::-moz-range-track]:to-orange-400
                            [&::-moz-range-track]:rounded-lg">
                 <div class="flex justify-between mt-2 text-xs text-gray-500 dark:text-gray-400">
-                    <span>Light</span>
-                    <span>Bold</span>
+                    <span>{{ t('filters.weight.light') }}</span>
+                    <span>{{ t('filters.weight.bold') }}</span>
                 </div>
             </div>
 
             <!-- Grade Slider -->
             <div class="relative">
                 <div class="flex items-center justify-between mb-3">
-                    <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300">Grade</h3>
+                    <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300">{{ t('filters.grade.label') }}</h3>
                     <span class="px-2 py-1 text-sm bg-orange-100 dark:bg-orange-900/30 text-orange-600 
                                 dark:text-orange-400 rounded-md">{{ filters.grade }}</span>
                 </div>
@@ -141,15 +145,16 @@ watch(() => props.modelValue, (newVal) => {
                            [&::-moz-range-track]:to-orange-400
                            [&::-moz-range-track]:rounded-lg">
                 <div class="flex justify-between mt-2 text-xs text-gray-500 dark:text-gray-400">
-                    <span>Thin</span>
-                    <span>Thick</span>
+                    <span>{{ t('filters.grade.thin') }}</span>
+                    <span>{{ t('filters.grade.thick') }}</span>
                 </div>
             </div>
 
             <!-- Optical Size Slider -->
             <div class="relative">
                 <div class="flex items-center justify-between mb-3">
-                    <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300">Optical Size</h3>
+                    <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300">{{ t('filters.opticalSize.label')
+                        }}</h3>
                     <span class="px-2 py-1 text-sm bg-orange-100 dark:bg-orange-900/30 text-orange-600 
                                 dark:text-orange-400 rounded-md">{{ filters.opticalSize }}px</span>
                 </div>

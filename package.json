@@ -13,7 +13,8 @@
     "@heroicons/vue": "^2.0.18",
     "file-saver": "^2.0.5",
     "html-to-image": "^1.11.11",
-    "vue": "^3.4.38"
+    "vue": "^3.4.38",
+    "vue-i18n": "^9.14.2"
   },
   "devDependencies": {
     "@types/file-saver": "^2.0.7",
